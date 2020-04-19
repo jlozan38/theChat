@@ -28,32 +28,32 @@
 </template>
 
 <script>
-import { db } from "../plugins/firebase"
+import { db } from "../plugins/firebase";
 
 export default {
   name: "Home",
   data() {
     return {
       newRoom: "",
-      rooms: [],
-    }
+      rooms: []
+    };
   },
-  mounted () {
-    this.bind()
+  mounted() {
+    this.bind();
   },
   methods: {
     async add() {
-      if (this.newRoom != '') {
-        await db.collection('rooms').add({
+      if (this.newRoom != "") {
+        await db.collection("rooms").add({
           name: this.newRoom,
-          createdAt: new Date(),
-        })
-        this.newRoom = ''
+          createdAt: new Date()
+        });
+        this.newRoom = "";
       }
     },
     async bind() {
-      await this.$bind("rooms", db.collection("rooms").orderBy('createdAt'))
-    },
-  },
+      await this.$bind("rooms", db.collection("rooms").orderBy("createdAt"));
+    }
+  }
 };
 </script>
